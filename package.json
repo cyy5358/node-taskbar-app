@@ -1,33 +1,27 @@
 {
-  "name": "node-process-windows",
+  "name": "taskbar-process",
   "version": "0.0.2",
-  "description": "View information about running processes, get the active process window, or activate a process's main window.",
+  "description": "Getting application on taskbar / Focusing some application.",
   "main": "index.js",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "iconv-lite":"^0.6.3"
+  },
   "scripts": {
     "test": "npm run test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/extr0py/node-process-windows.git"
+    "url": "git+https://github.com/cyy5358/node-taskbar-app.git"
   },
   "keywords": [
-    "window",
-    "shell",
-    "application",
-    "handle",
-    "mainwindowhandle",
-    "focus",
-    "activate",
-    "cycle",
-    "net",
+    "taskbar",
     "c#"
   ],
-  "author": "extr0py",
+  "author": "cyy",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/extr0py/node-process-windows/issues"
+    "url": "https://github.com/cyy5358/node-taskbar-app/issues"
   },
-  "homepage": "https://github.com/extr0py/node-process-windows#readme"
+  "homepage": "https://github.com/cyy5358/node-taskbar-app#readme"
 }

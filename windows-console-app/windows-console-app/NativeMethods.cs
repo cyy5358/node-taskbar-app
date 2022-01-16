@@ -11,7 +11,7 @@ namespace windows_console_app
 
         [DllImport("user32.dll")]
         public static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
-        
+
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool SwitchToThisWindow(IntPtr hWnd, bool fAltTab);
     }

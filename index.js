@@ -11,30 +11,20 @@ var noop = function () { };
  *
  * @param {function} callback
  */
-function getProcesses(callback) {
+function getTaskbarProcesses(callback) {
     callback = callback || noop;
 
     if (!isWindows) {
         callback("Non-Windows platforms are currently not supported");
     }
 
-    var mappingFunction = (processes) => {
-        return processes.map(p => {
-            return {
-                pid: p.ProcessId,
-                mainWindowTitle: p.MainWindowTitle || "",
-                processName: p.ProcessName || ""
-            };
-        });
-    };
-
-    executeProcess("--processinfo", callback, mappingFunction);
+    executeProcess("", callback);
 }
 
 /**
  * Focus a windows
  * Process can be a number (PID), name (process name or window title),
- * or a process object returning from getProcesses
+ * or a process object returning from getTaskbarProcesses
  *
  * @param {number|string|ProcessInfo} process
  */
@@ -47,11 +37,11 @@ function focusWindow(process) {
         return;
 
     if (typeof process === "number") {
-        executeProcess("--focus " + process.toString());
+        executeProcess(process.toString());
     } else if (typeof process === "string") {
         focusWindowByName(process);
     } else if (process.pid) {
-        executeProcess("--focus " + process.pid.toString());
+        executeProcess(process.pid.toString());
     }
 }
 
@@ -74,7 +64,7 @@ function getActiveWindow(callback) {
 function focusWindowByName(processName) {
     processName = processName.toLowerCase();
 
-    getProcesses((err, result) => {
+    getTaskbarProcesses((err, result) => {
         var potentialResults = result.filter((p) => {
             var normalizedProcessName = p.processName.toLowerCase();
             var normalizedWindowName = p.mainWindowTitle.toLowerCase();
@@ -84,7 +74,7 @@ function focusWindowByName(processName) {
         });
 
         if (potentialResults.length > 0) {
-            executeProcess("--focus " + potentialResults[0].pid.toString());
+            executeProcess(potentialResults[0].pid.toString());
         }
     });
 }
@@ -92,7 +82,7 @@ function focusWindowByName(processName) {
 /**
  * Helper method to execute the C# process that wraps the native focus / window APIs
  */
-function executeProcess(arg, callback, mapper) {
+function executeProcess(arg, callback) {
     callback = callback || noop;
 
     exec(windowsFocusManagementBinary + " " + arg, (error, stdout, stderr) => {
@@ -106,22 +96,18 @@ function executeProcess(arg, callback, mapper) {
             return;
         }
 
-        var returnObject = JSON.parse(stdout);
-
-        if (returnObject.Error) {
-            callback(returnObject.Error, null);
-            return;
+        var returnObject = "";
+        if (stdout != "") {
+            returnObject = JSON.parse(stdout);
         }
 
-        var ret = returnObject.Result;
+        var ret = returnObject;
 
-        ret = mapper ? mapper(ret) : ret;
         callback(null, ret);
     });
 }
 
 module.exports = {
-    getProcesses: getProcesses,
+    getTaskbarProcesses: getTaskbarProcesses,
     focusWindow: focusWindow,
-    getActiveWindow: getActiveWindow
 }

@@ -1,19 +1,19 @@
-# node-node-process-windows
-###### Manage application windows via a Node API - set focus, cycle active windows, and get active windows
+# node-taskbar-app
+###### Getting or focusing app on taskbar with c#.
 
-- [Installation](#Installation)
-    - [Supported Platforms](#Supported_Platforms)
-- [Usage](#Usage)
-- [Contributing](#Contributing)
-- [License](#License)
-- [Contact](#Contact)
+- [node-taskbar-app](#node-taskbar-app)
+          - [Getting or focusing app on taskbar with c#.](#getting-or-focusing-app-on-taskbar-with-c)
+  - [Installation](#installation)
+    - [Supported Platforms](#supported-platforms)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
 
 ## Installation
 
 Requires Node 4+
 
 ```
-    npm install node-process-windows
+    npm install taskbar-process
 ```
 
 This module is __not supported__ in browsers.
@@ -29,9 +29,9 @@ Pull requests are welcome - it would be great to have this API work cross-platfo
 1) Get active processes
 
 ```javascript
-    var processWindows = require("node-process-windows");
+    var processWindows = require("taskbar-process");
 
-    var activeProcesses = processWindows.getProcesses(function(err, processes) {
+    var processesOnTaskbar = processWindows.getTaskbarProcesses(function(err, processes) {
         processes.forEach(function (p) {
             console.log("PID: " + p.pid.toString());
             console.log("MainWindowTitle: " + p.mainWindowTitle);
@@ -43,10 +43,10 @@ Pull requests are welcome - it would be great to have this API work cross-platfo
 2) Focus a window
 
 ```javascript
-    var processWindows = require("node-process-windows");
+    var processWindows = require("taskbar-process");
 
     // Focus window by process...
-    var activeProcesses = processWindows.getProcesses(function(err, processes) {
+    var processesOnTaskbar = processWindows.getTaskbarProcesses(function(err, processes) {
         var chromeProcesses = processes.filter(p => p.processName.indexOf("chrome") >= 0);
 
         // If there is a chrome process active, focus the first window
@@ -59,24 +59,8 @@ Pull requests are welcome - it would be great to have this API work cross-platfo
     processWindows.focusWindow("chrome");
 ```
 
-3) Get active window
-
-```javascript
-    var processWindows = require("node-process-windows");
-
-    var currentActiveWindow = processWindows.getActiveWindow((err, processInfo) => {
-        console.log("Active window title: " + processInfo.mainWindowTitle);
-    });
-```
 
 ## Contributing
 
 Pull requests are welcome
 
-## License
-
-[MIT License]("LICENSE")
-
-## Contact
-
-extr0py@extropygames.com
