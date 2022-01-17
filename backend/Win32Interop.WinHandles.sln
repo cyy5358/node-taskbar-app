@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32Interop.WinHandles", "src\Win32Interop.WinHandles\Win32Interop.WinHandles.csproj", "{632F72C0-0D20-48D3-B432-59F1C647B55D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{632F72C0-0D20-48D3-B432-59F1C647B55D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{632F72C0-0D20-48D3-B432-59F1C647B55D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{632F72C0-0D20-48D3-B432-59F1C647B55D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{632F72C0-0D20-48D3-B432-59F1C647B55D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA7FB2AD-9D7D-4D82-B4F3-31AF8B739974}
+	EndGlobalSection
+EndGlobal
