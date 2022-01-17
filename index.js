@@ -85,24 +85,12 @@ function focusWindowByName(processName) {
 function executeProcess(arg, callback) {
     callback = callback || noop;
 
-    exec(windowsFocusManagementBinary + " " + arg, (error, stdout, stderr) => {
+    exec(windowsFocusManagementBinary + " " + arg, { "encoding": "buffer" }, (error, stdout, stderr) => {
         if (error) {
             callback(error, null);
             return;
         }
-
-        if (stderr) {
-            callback(stderr, null);
-            return;
-        }
-
-        var returnObject = "";
-        if (stdout != "") {
-            returnObject = JSON.parse(stdout);
-        }
-
-        var ret = returnObject;
-
+        var ret = stdout;
         callback(null, ret);
     });
 }
